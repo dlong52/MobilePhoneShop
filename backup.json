@@ -1,0 +1,273 @@
+{
+    "Products": [
+        {
+            "name": "IPhone 15 Pro Max",
+            "price": 12000000,
+            "code": "ip15max",
+            "description": "iPhone 15 Pro Max đã chính thức được ra mắt trong sự kiện Wonderlust tại nhà hát Steve Jobs, California (Mỹ) vào lúc 10h sáng 12/9 tức 0h ngày 13/9 (giờ Việt Nam). Chiếc iPhone mới trong series mới đem đến cho người dùng trải nghiệm ổn định hơn với thế hệ chip A17 Pro mới nhất, cùng công nghệ Wi-Fi 6E. Bộ camera của iPhone 15 Pro Max cũng được nâng cấp thêm với ống kính tele với khả năng zoom quang học 5x với thiết kế tetraprism hiện đại.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Apple",
+            "discount": "25%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "4GB",
+                "screen": "6.7",
+                "capacity": "5000"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fblack.webp?alt=media&token=b88d2f07-9397-4270-acf6-7c75222b8402",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Ftitan.webp?alt=media&token=54cc9b95-ff2c-4e79-b26a-b002fa645c37",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fwhite.webp?alt=media&token=2349cc6e-7fea-4587-a43f-69050a364b19"
+            ],
+            "color": ["Đen", "Trắng", "Xanh"],
+            "version": [
+                {
+                    "v_name": "256GB",
+                    "price": 28790000
+                },
+                {
+                    "v_name": "512GB",
+                    "price": 34900000
+                },
+                {
+                    "v_name": "1TB",
+                    "price": 41900000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "Samsung Galaxy S24 Ultra",
+            "price": 12000000,
+            "code": "ss24u",
+            "description": "Điện thoại Samsung Galaxy S24 Ultra - Chính hãng sở hữu màn hình 6.8 inch với độ phân giải QHD+, sử dụng công nghệ màn hình Dynamic AMOLED 2X. Đáng chú ý, S24 Ultra được trang bị con chip Snapdragon® 8 Gen 3 for Galaxy mạnh mẽ, hỗ trợ nhu cầu hiệu suất cao và quản lý nhiệt độ hiệu quả. Về camera, chiếc điện thoại này có thể sẽ có camera chính 200MP cùng camera trước 12MP và camera góc siêu rộng 12MP. Pin của thiết bị có dung lượng 5.000mAh.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Samsung",
+            "discount": "25%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "4GB",
+                "screen": "6.7",
+                "capacity": "5000"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fss24uden.webp?alt=media&token=1f92f198-f2a6-4744-9570-950983c7b475",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fss24utim.webp?alt=media&token=7b3f1acd-3a8f-408c-8b0d-0550b2ba17f7",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fss24uxam.webp?alt=media&token=e53f8cc6-721c-4ebf-8f04-a10ccec9f580"
+            ],
+            "color": ["Đen", "Xám", "Tím"],
+            "version": [
+                {
+                    "v_name": "12GB/256GB",
+                    "price": 28790000
+                },
+                {
+                    "v_name": "12GB/512GB",
+                    "price": 34900000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "Xiaomi 14 Ultra",
+            "price": 32990000,
+            "code": "xiaomi14u",
+            "description": "Xiaomi 14 Ultra là một trong những smartphone hàng đầu với nhiều tính năng và công nghệ tiên tiến. Thiết bị này được trang bị bộ vi xử lý Snapdragon 8 Gen 3, đảm bảo hiệu năng mượt mà và khả năng đa nhiệm vượt trội. Màn hình máy có công nghệ LTPO AMOLED, cung cấp hình ảnh sắc nét với độ phân giải QHD+, khả năng hiển thị 68 tỷ màu, cùng tốc độ làm mới 120Hz. Camera trên thiết bị này nổi bật với cảm biến chính 50MP, hỗ trợ quay video 8K và nhiều tính năng cao cấp khác như zoom quang 10x. Cùng với đó là viên pin 5000mAh kèm theo khả năng sạc nhanh 90W có dây.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Xiaomi",
+            "discount": "10%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "8GB",
+                "screen": "6.7",
+                "capacity": "5000"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fxiaomi-14-ultra-3den.webp?alt=media&token=6b1c6ea2-5475-4d59-83e4-abc4303d9e27",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fxiaomi-14-ultra-4trang.webp?alt=media&token=d1aa1911-1925-4022-8b5d-fce57410c8b5"
+            ],
+            "color": ["Đen", "Trắng"],
+            "version": [
+                {
+                    "v_name": "",
+                    "price": 32990000
+                },
+                {
+                    "v_name": "",
+                    "price": 32990000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "OPPO Reno10 5G",
+            "price": 10490000,
+            "code": "oprn5g",
+            "description": "Chiếc điện thoại OPPO Reno 10 đến từ OPPO có nhiều cải tiến về hiển thị khi được trang bị tấm nền 3D AMOLED kết hợp với tần số quét lên tới 120 Hz. Về hiệu năng, Reno10 được tăng cường sức mạnh nhờ chipset Mediatek Dimensity 7050 mạnh mẽ kết hợp cùng viên pin 4870mAh bền bỉ, có hỗ trợ SUPERVOOC 67W mang tới trải nghiệm thực sự khác biệt cho người dùng.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Oppo",
+            "discount": "15%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "4GB",
+                "screen": "6.7",
+                "capacity": "5000"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Freno-10-3den.webp?alt=media&token=679e2fb0-5406-4295-97a6-4b485a15ad0c",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Freno-10-2xam.webp?alt=media&token=c1b447f9-9cf8-4d56-b12a-ece6624e8a76",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Freno-10-4_638247573953389823xanh.webp?alt=media&token=cc80071e-1f86-40d2-a9e1-a19d93eaa13c",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Freno-10-7_638247573953389823xanh.webp?alt=media&token=099761d3-c57a-408f-a9f9-d795ac14e06a"
+            ],
+            "color": ["Xanh", "Xám"],
+            "version": [
+                {
+                    "v_name": "128GB",
+                    "price": 7890000
+                },
+                {
+                    "v_name": "256GB",
+                    "price": 8990000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "Vivo T1 5G",
+            "price": 7990000,
+            "code": "vivot15g",
+            "description": "Vivo đã áp dụng ngôn ngữ thiết kế hình học tương tự như iPhone. Các đường phẳng và mặt sau áp dụng cách phối màu gradient làm nổi bật phong cách sành điệu, trẻ trung cốt lõi của nó. Điện thoại sẽ thay đổi màu sắc khi ánh sáng chiếu vào và có khung phẳng với mặt sau. Nói cách khác, đây là một chiếc điện thoại có vẻ ngoài hấp dẫn, rất phù hợp với các bạn trẻ.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Vivo",
+            "discount": "10%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "4GB",
+                "screen": "6.7",
+                "capacity": "4700"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fvivot15gden.webp?alt=media&token=8992b11f-f4a5-4fe1-a276-e8bd3ebe3253",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fvivot15gxanh.webp?alt=media&token=ce9c73e0-3128-4a1a-b477-8c2e2af7e4e9"
+            ],
+            "color": ["Đen", "Xanh"],
+            "version": [
+                {
+                    "v_name": "",
+                    "price": 7990000
+                },
+                {
+                    "v_name": "",
+                    "price": 7990000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "Nokia C32 (4GB/128GB)",
+            "price": 3290000,
+            "code": "nokiac32",
+            "description": "Vừa mới ra mắt đầu năm 2023, điện thoại di động Nokia C32 (4GB/128GB) đã nhanh chóng thu hút sự chú ý của người dùng. Đặc biệt là những ai đang tìm kiếm một chiếc điện thoại di động tầm trung với những tính năng ấn tượng. Hãy cùng Hoàng Hà Mobile tìm hiểu chi tiết hơn về chiếc smartphone tầm trung đến từ thương hiệu Nokia đình đám này.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Nokia",
+            "discount": "10%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "4GB",
+                "screen": "6.7",
+                "capacity": "3200"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fnokiac32den.webp?alt=media&token=f08c79fe-e641-4c10-9daa-ce64a41a84df",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Fnokiac32xanh.webp?alt=media&token=f185c020-c53c-496a-80a2-860cf04ead80"
+            ],
+            "color": ["Đen", "Xanh lá"],
+            "version": [
+                {
+                    "v_name": "",
+                    "price": 3290000
+                },
+                {
+                    "v_name": "",
+                    "price": 3290000
+                }
+            ],
+            "created_at": ""
+        },
+        {
+            "name": "Realme C55",
+            "price": 1,
+            "code": "realmec55",
+            "description": "Realme C55 là sản phẩm mỏng nhất trong dòng C với độ mỏng chỉ 7.89mm với bo góc chữ C cho phép điện thoại vừa khít với bàn tay. Chiếc smartphone này có cạnh thiết kế phẳng, được làm bằng kim loại và sở hữu nút nguồn được tích hợp cảm biến vân tay cạnh viền.",
+            "quantity": 20,
+            "sold": 0,
+            "brand": "Realme",
+            "discount": "10%",
+            "oustanding": true,
+            "configuration":{
+                "ram": "8GB",
+                "screen": "6.7",
+                "capacity": "4000"
+            },
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Frealmeden.webp?alt=media&token=d22f033f-e24e-4fc1-832b-6f153f4d8375",
+                "https://firebasestorage.googleapis.com/v0/b/information-project-65cca.appspot.com/o/Products%2Frealmec55vang.webp?alt=media&token=989bb8cc-ef07-4fff-9d54-194de3f6c6aa"
+            ],
+            "color": ["Đen", "Vàng"],
+            "version": [
+                {
+                    "v_name": "6GB/128GB",
+                    "price": 3690000
+                },
+                {
+                    "v_name": "8GB/256GB",
+                    "price": 4470000
+                }
+            ],
+            "created_at": ""
+        }
+    ],
+    "Brand": [
+        {
+            "id": 1,
+            "name": "Apple",
+            "image": "apple.png"
+        },
+        {
+            "id": 2,
+            "name": "Samsung",
+            "image": "samsung.png"
+        },
+        {
+            "id": 3,
+            "name": "Oppo",
+            "image": "oppo.png"
+        },
+        {
+            "id": 4,
+            "name": "Vivo",
+            "image": "vivo.png"
+        },
+        {
+            "id": 5,
+            "name": "Nokia",
+            "image": "nokia.png"
+        },
+        {
+            "id": 6,
+            "name": "Realme",
+            "image": "realme.png"
+        },
+        {
+            "id": 7,
+            "name": "Xiaomi",
+            "image": "xiaomi.png"
+        }
+    ]
+}
