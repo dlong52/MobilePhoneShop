@@ -8,6 +8,7 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false); // State to track registration status
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -29,19 +30,20 @@ export const SignUp = () => {
         orders: [],
         created_at: helpers.getCurrentTime(),
       };
-      set(usersRef, userData)
-        .then(() => {
-          console.log("User information saved to the database.");
-        })
-        .catch((error) => {
-          console.error("Error saving user information: ", error);
-        });
-        window.location.href = "/SignIn";
+      await set(usersRef, userData);
+      console.log("User information saved to the database.");
+      sessionStorage.setItem('isRegistered', 'true'); // Save isRegistered status
+      window.location.href = "/SignIn"; // Redirect to SignIn after registration
     } catch (error) {
-      console.log(error);
+      console.error("Error during registration:", error);
       alert('Error creating user');
     }
   };
+
+  if (isRegistered) {
+    return <Navigate to="/SignIn" />;
+  }
+
   return (
     <>
       <div className=" fixed inset-0 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -52,7 +54,7 @@ export const SignUp = () => {
             alt="Your Company"
           />
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign up
+            Đăng kí
           </h2>
         </div>
 
@@ -60,7 +62,7 @@ export const SignUp = () => {
           <form onSubmit={handleRegister} className="space-y-6" action="#" method="POST">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                User name
+                Họ tên
               </label>
               <div className="mt-2">
                 <input
@@ -69,14 +71,14 @@ export const SignUp = () => {
                   type="text"
                   autoComplete="email"
                   required
-                  onChange={(e) => {setUserName(e.target.value)}}
+                  onChange={(e) => { setUserName(e.target.value) }}
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Email
               </label>
               <div className="mt-2">
                 <input
@@ -85,7 +87,7 @@ export const SignUp = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  onChange={(e) => {setEmail(e.target.value)}}
+                  onChange={(e) => { setEmail(e.target.value) }}
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -94,7 +96,7 @@ export const SignUp = () => {
             <div>
               <div className="flex items-center justify-between">
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Password
+                  Mật khẩu
                 </label>
               </div>
               <div className="mt-2">
@@ -104,7 +106,7 @@ export const SignUp = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  onChange={(e) => {setPassword(e.target.value)}}
+                  onChange={(e) => { setPassword(e.target.value) }}
                   className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -115,15 +117,15 @@ export const SignUp = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign up
+                Đăng kí
               </button>
             </div>
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already have an account?{' '}
+            Bạn đã có tài khoản?{' '}
             <a href="/SignIn" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Login
+              Đăng nhập<param name="" value="" />
             </a>
           </p>
         </div>

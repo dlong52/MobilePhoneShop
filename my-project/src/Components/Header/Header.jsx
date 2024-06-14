@@ -2,7 +2,7 @@ import { routes } from '../../Routes/main';
 export const Header = ({ user, cartData,handleLogout }) => {
     const routerActiveStyle = "mx-5 font-medium"
     const currentRoute = window.location.pathname
-    if (window.location.pathname == "/SignIn" || window.location.pathname == "/SignUp") {
+    if (window.location.pathname == "/SignIn" || window.location.pathname == "/SignUp"|| window.location.pathname == "/ForgotPassword") {
         return (<div></div>)
     } else {
         return (
@@ -24,7 +24,7 @@ export const Header = ({ user, cartData,handleLogout }) => {
                                 {
                                     user ?
                                         <div className=" relative"> 
-                                            <a className='profile_link' href="/Profile">{user.displayName}</a>
+                                            <a className='profile_link' href="/Profile">{user?.username}</a>
                                             <div className="logout_box top-[22px] hover:block bg-gray-200 absolute z-10 shadow-2xl w-[100px] rounded-md">
                                                 <a className=' block p-3 rounded-md hover:text-white hover:bg-blue-500 border-b-2 border-white' href="/Profile">Tài khoản</a>
                                                 <span className='p-3 block rounded-md cursor-pointer hover:text-white hover:bg-blue-500' onClick={()=>{handleLogout()}}>Đăng xuất</span>

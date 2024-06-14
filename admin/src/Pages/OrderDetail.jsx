@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import database from '../Utils/handelDatabase';
 import helpers from '../Utils/helpers';
+import { Status } from '../Components/Status';
 export const OrderDetail = () => {
   const { orderId } = useParams();
   const [data, setData] = useState(null)
@@ -18,8 +19,8 @@ export const OrderDetail = () => {
         <div className=" col-span-2 bg-white rounded-lg p-5">
           <div className="flex flex-col">
             <span className='text-[20px] font-semibold text-main'>Order #ID:{data?.order_id}</span>
-            <span>
-              <span className=' capitalize'>{data?.status}: </span>
+            <span className='flex items-center gap-x-3'>
+              <Status status={data?.status}/>
               {
                 data?.status == 'processing' ?
                   data.orderDate :

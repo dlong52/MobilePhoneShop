@@ -20,7 +20,7 @@ export const CheckoutItem = ({data}) => {
                 <h1>{product?.name} ({data?.version.v_name ? data?.version.v_name : ""})</h1>
                 <span>Màu: {data?.color}</span>
             </div>
-            <h1 className='font-medium text-[18px] col-span-2'>{helpers.numberFormat(data?.version.price)}đ</h1>
+            <h1 className='font-medium text-[18px] col-span-2'>{helpers.numberFormat(data?.version.price*(1-data?.discount))}đ</h1>
             <div className="flex  col-span-1 text-gray-600">
                 <span> X{data.quantity}</span>
             </div>

@@ -90,7 +90,7 @@ export const UserDetail = ({ orders, updateUi }) => {
             </div>
           </div>
           <div className="mt-[30px] flex flex-col">
-            <span className='text-[20px] font-semibold'>{data?.username}</span>
+            <span className='text-[20px] font-semibold capitalize'>{data?.username} ({data?.role? data.role : "normal user"})</span>
             <span>#ID: {userId.userId}</span>
             <div className="flex flex-col mt-5 gap-y-1 font-medium text-gray-600">
               <span>Email: {data?.email}</span>

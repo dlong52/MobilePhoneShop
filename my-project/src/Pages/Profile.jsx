@@ -32,7 +32,7 @@ export const Profile = ({ user }) => {
                         <i class="fa-regular fa-user fa-2xl text-blue-500"></i>
                     </div>
                     <div className="ml-[20px] text-[25px] text-gray-500 font-medium">
-                        <span className='text-gray-700'>{user?.displayName}</span><br />
+                        <span className='text-gray-700'>{user?.username}</span><br />
                         <span className='text-gray-600 text-[15px]'>{user?.email}</span>
                     </div>
                 </div>

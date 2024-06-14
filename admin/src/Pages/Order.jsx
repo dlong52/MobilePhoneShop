@@ -5,36 +5,55 @@ import { Status } from '../Components/Status'
 import Loading from '../Components/Loading/Loading'
 
 export const Order = ({ data, updateUi }) => {
-    const [show, setShow] = useState(false)
-    const [status, setStatus] = useState("")
-    const [id, setId] = useState(null)
-    const optionStyle = 'h-[50px] w-[150px] flex justify-center items-center font-medium'
-    const [optionActive, setOptionActive] = useState(0)
-    const options = ["All", "Processing", "Delivered", "Cancelled"]
-    let currentTime = helpers.getCurrentTime()
+    const [show, setShow] = useState(false);
+    const [status, setStatus] = useState('');
+    const [id, setId] = useState(null);
+    const [optionActive, setOptionActive] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const optionStyle = 'h-[50px] w-[150px] flex justify-center items-center font-medium';
+    const options = ['All', 'Processing', 'Delivered', 'Cancelled'];
+    let currentTime = helpers.getCurrentTime();
+
     const handleSetId = (id) => {
-        setShow(!show)
-        setId(id)
-    }
+        setShow(!show);
+        setId(id);
+    };
+
     const handelUpdateStatus = () => {
-        setShow(!show)
-        database.handelUpdateStatus(id, status, currentTime, updateUi)
-    }
-    console.log(status);
+        setShow(!show);
+        database.handelUpdateStatus(id, status, currentTime, updateUi);
+    };
+
     const filteredOrders = () => {
+        let filtered = data;
+
+        // Filter based on status
         switch (optionActive) {
-            case 0:
-                return data;
             case 1:
-                return data.filter(order => order.status === "processing");
+                filtered = filtered.filter(order => order.status === 'processing');
+                break;
             case 2:
-                return data.filter(order => order.status === "delivered");
+                filtered = filtered.filter(order => order.status === 'delivered');
+                break;
             case 3:
-                return data.filter(order => order.status === "cancelled");
+                filtered = filtered.filter(order => order.status === 'cancelled');
+                break;
             default:
-                return [];
+                break;
         }
-    }
+
+        // Filter based on search query
+        if (searchQuery) {
+            filtered = filtered.filter(order =>
+                order.cusName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                order.phoneNumber.includes(searchQuery)
+            );
+        }
+
+        return filtered;
+    };
+
     const filteredData = filteredOrders();
     console.log(filteredData);
     return (
@@ -62,13 +81,16 @@ export const Order = ({ data, updateUi }) => {
                     <h1 className='text-[20px] font-semibold'>Orders</h1>
                     <div className="flex mt-4">
                         <div className="flex w-[350px] rounded bg-slate-300">
-                            <input onChange={(e) => { }} className=" w-full border-none bg-transparent px-3 py-1 text-gray-400 outline-none focus:outline-none " type="search" name="search" placeholder="Search..." />
-                            <input onChange={(e) => { }} className=" w-full border-none bg-transparent px-3 py-1 text-gray-400 outline-none focus:outline-none " type="date" name="search" placeholder="Search..." />
+                            <input onChange={(e) => setSearchQuery(e.target.value)}
+                                className='w-full border-none bg-transparent px-3 py-1 text-gray-400 outline-none focus:outline-none'
+                                type='search'
+                                name='search'
+                                placeholder='Search by cusName or phoneNumber...' />
                             <button type="submit" className="m-2 rounded bg-main px-4 py-1 text-white">
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

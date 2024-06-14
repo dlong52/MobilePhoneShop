@@ -45,7 +45,7 @@ export const OrderItem = ({ data, user, updateUi }) => {
                         </span>
                     </span>
                     <span className=" font-medium mt-3">Thành tiền: <span className='text-[20px] font-semibold text-red-600'>{helpers.numberFormat(data.totalPrice)}đ</span></span>
-                    {!(data?.status == "cancelled" || data?.status == "deliveried") &&
+                    {!(data?.status == "cancelled" || data?.status == "delivered") &&
                         <button onClick={confirmCancelOrder} className='w-full h-[40px] rounded-md bg-red-600 mt-3 text-white' >Hủy đơn hàng</button>
                     }
                 </div>

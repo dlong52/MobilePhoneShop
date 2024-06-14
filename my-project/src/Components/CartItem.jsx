@@ -49,7 +49,7 @@ export const CartItem = ({ user, data, updateUi }) => {
         <h1>{product?.name} ({data?.version.v_name ? data?.version.v_name : ""})</h1>
         <span>Màu: {data?.color}</span>
       </div>
-      <h1 className='font-medium text-[18px] col-span-2'>{helpers.numberFormat(data?.version.price)}đ</h1>
+      <h1 className='font-medium text-[18px] col-span-2'>{helpers.numberFormat(data?.version.price*(1-data?.discount))}đ</h1>
       <div className="flex  col-span-2 text-gray-600">
         <button onClick={()=>{minusQuantity(data.id)}} className=' w-[30px] aspect-square rounded-[5px] border border-gray-400 flex items-center justify-center'><i class="fa-solid fa-minus"></i></button>
         <span className='mx-2 w-[30px] aspect-square rounded-[5px] border border-gray-400 flex items-center justify-center'>{quantity}</span>

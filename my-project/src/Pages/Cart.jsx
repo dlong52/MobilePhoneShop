@@ -1,37 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { CartItem } from '../Components/CartItem';
-import database from '../Utils/handelDatabase';
 import helpers from '../Utils/helpers';
 import { Empty } from '../Components/Empty';
 import Loading from '../Components/Loading/Loading';
 
-export const Cart = ({ user }) => {
-    const [cartData, setCartData] = useState(null);
+export const Cart = ({ cartData, updateUi, user }) => {
     const [totalPrice, setTotalPrice] = useState(0);
-
-    useEffect(() => {
-        fetchCartData();
-    }, [user]);
-
-    const fetchCartData = async () => {
-        const cart = await database.fetchCartData(user);
-        setCartData(cart);
-    };
-
     useEffect(() => {
         const calculateTotalPrice = () => {
-            const totalPrice = cartData?.reduce((acc, item) => acc + (item.version.price * item.quantity), 0);
+            const totalPrice = cartData?.reduce((acc, item) => acc + (item.version.price*(1-item.discount) * item.quantity), 0);
             setTotalPrice(totalPrice);
         };
         if (cartData) {
             calculateTotalPrice();
         }
     }, [cartData]);
-
-    const updateUi = () => {
-        fetchCartData();
-    };
-
     return (
         <div className='container mx-auto'>
             {cartData == null ? (

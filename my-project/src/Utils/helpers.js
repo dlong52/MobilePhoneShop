@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const helpers = {
     numberFormat: num => new Intl.NumberFormat().format(num),
     getCurrentTime: () => {
@@ -14,5 +17,6 @@ const helpers = {
         const vietnamTime = formatter.format(currentTime);
         return vietnamTime;
     },
+    notify: (content, type) => { toast[type](content) }
 }
 export default helpers

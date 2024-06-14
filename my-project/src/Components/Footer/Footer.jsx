@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const Footer = () => {
-  if (window.location.pathname == "/SignIn" || window.location.pathname == "/SignUp") {
+  if (window.location.pathname == "/SignIn" || window.location.pathname == "/SignUp"|| window.location.pathname == "/ForgotPassword") {
     return (<div></div>)
   } else {
     return (
@@ -10,13 +10,12 @@ export const Footer = () => {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
               <div className="text-[#29b6f6] flex items-center">
-                <img src="Images/Logo/Logo.svg" alt="" className='h-[40px]'/>
+                <img src="Images/Logo/Logo.svg" alt="" className='h-[40px]' />
                 <h1 className='text-[16px] font-bold ml-1'>DRACO STORE</h1>
               </div>
 
               <p className="mt-4 max-w-xs text-gray-500">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam
-                molestias.
+                Địa chỉ: Số 72 Đường Kim Giang, Phường Đại Kim, Quận Hoàng Mai, Thành Phố Hà Nội, Việt Nam
               </p>
 
               <ul className="mt-8 flex gap-6">

@@ -7,8 +7,7 @@ import Loading from '../Components/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Checkout = ({ user }) => {
-    const [cartData, setCartData] = useState([]);
+export const Checkout = ({ user, cartData }) => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isShowForm, setIsShowForm] = useState(false)
 
@@ -19,12 +18,12 @@ export const Checkout = ({ user }) => {
     const notify = (content, type) => { toast[type](content) };
     useEffect(() => {
         const calculateTotalPrice = () => {
-            const totalPrice = cartData?.reduce((acc, item) => acc + (item.version.price * item.quantity), 0);
+            const totalPrice = cartData?.reduce((acc, item) => acc + (item.version.price*(1-item.discount) * item.quantity), 0);
             setTotalPrice(totalPrice);
         };
         calculateTotalPrice();
         setProductOrder(
-            cartData?.map((item) =>{
+            cartData?.map((item) => {
                 return {
                     id: item.product_id,
                     quantity: item.quantity
@@ -32,14 +31,9 @@ export const Checkout = ({ user }) => {
             })
         )
     }, [cartData]);
-    const fetchCartData = async () => {
-        const cart = await database.fetchCartData(user);
-        setCartData(cart);
-    };
-    useEffect(() => {
-        fetchCartData();
-        fetchCheckoutInfo()
 
+    useEffect(() => {
+        fetchCheckoutInfo()
     }, [user]);
     const showForm = () => {
         setIsShowForm(!isShowForm)
@@ -52,24 +46,21 @@ export const Checkout = ({ user }) => {
         setAddress(addressData);
         setPhoneNumber(phoneNumberData);
     };
-    console.log(productOrder);
     const order = {
-        cusName: user?.displayName,
+        cusName: user?.username,
         address: address,
         phoneNumber: phoneNumber,
         products: cartData,
-        totalPrice:totalPrice,
+        totalPrice: totalPrice,
         status: "processing",
         orderDate: helpers.getCurrentTime(),
     }
-
+    console.log(address);
     const createOrder = () => {
         if (!address && !phoneNumber) {
             notify("Vui lòng nhập đầy đủ thông tin nhận hàng!", "warning")
-        }else{
-            if (database.createOrder(user, order, productOrder)){
-                {notify("Đặt hàng thành công", "success")}
-            }
+        } else {
+            database.createOrder(user, order, productOrder)
         }
     }
     const updateUi = () => {
@@ -88,7 +79,7 @@ export const Checkout = ({ user }) => {
                 draggable
                 pauseOnHover={false}
             />
-            {!cartData.length==0 || phoneNumber ?
+            {!cartData?.length == 0 || phoneNumber ?
                 <div className="container mx-auto my-4 flex justify-between">
                     <div className="flex-1">
                         <div className=" bg-white p-5 rounded-lg flex flex-col">

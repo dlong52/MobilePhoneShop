@@ -65,6 +65,7 @@ export const FormAddress = ({user,showForm, updateUi, phoneNumberData}) => {
         updateUi()
         showForm()
     }
+    console.log(provinceData);
     return (
         <div className='fixed inset-0'>
             <div onClick={()=>{showForm()}} className=" absolute inset-0 bg-[#64646460]"></div>

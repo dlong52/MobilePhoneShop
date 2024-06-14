@@ -25,6 +25,7 @@ const database = {
             const snapshot = await get(productRef);
             if (snapshot.exists()) {
                 const productData = snapshot.val();
+                productData.id = snapshot.key; // Add the 'id' field with the key
                 return productData;
             } else {
                 console.log("No product available for code:", code);
@@ -35,6 +36,7 @@ const database = {
             return null;
         }
     },
+
     fetchOrdersData: async () => {
         try {
             const snapshot = await get(child(dbRef, `Orders`));
@@ -111,6 +113,23 @@ const database = {
             }
         }
     },
+    fetchUserDataByCode: async (code) => {
+        try {
+            const productRef = child(dbRef, `Users/${code}`);
+            const snapshot = await get(productRef);
+            if (snapshot.exists()) {
+                const productData = snapshot.val();
+                productData.uid = snapshot.key;
+                return productData;
+            } else {
+                console.log("No product available for code:", code);
+                return null;
+            }
+        } catch (error) {
+            console.error("Error fetching product data:", error);
+            return null;
+        }
+    },
     getAddress: async (user) => {
         if (user) {
             const userRef = ref(db, `Users/${user.uid}`);
@@ -155,9 +174,35 @@ const database = {
         try {
             const db = getDatabase(app);
             const userRef = ref(db, `Users/${user.uid}/cart`);
-            await push(userRef, item);
-            notify("Thêm vào giỏ hàng thành công", "success")
-            updateUi()
+
+            // Fetch the current cart data
+            const cartSnapshot = await get(userRef);
+            const cartData = cartSnapshot.val();
+            const cartArray = cartData ? Object.keys(cartData).map((key) => ({ id: key, ...cartData[key] })) : [];
+
+            let itemExists = false;
+
+            if (cartArray.length > 0) {
+                // Loop through the cart items to check if the item already exists
+                for (const itemData of cartArray) {
+                    if (itemData.version.v_name === item.version.v_name && itemData.color === item.color) {
+                        // Item already exists, update the quantity
+                        const itemRef = ref(db, `Users/${user.uid}/cart/${itemData.id}`);
+                        await update(itemRef, { quantity: itemData.quantity + 1 });
+                        itemExists = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!itemExists) {
+                await push(userRef, { ...item, quantity: 1 });
+            }
+
+            console.log(cartArray);
+            console.log(item);
+            notify("Thêm vào giỏ hàng thành công", "success");
+            updateUi();
         } catch (error) {
             console.error('Error adding product to cart:', error);
         }
@@ -166,44 +211,48 @@ const database = {
         try {
             const newOrderRef = push(ref(db, 'Orders'));
             const newOrderId = newOrderRef.key;
-    
+
             const orderDetails = {
                 ...order,
                 user_id: user?.uid,
                 order_id: newOrderId
             };
-    
+
             await set(newOrderRef, orderDetails);
-    
+
             const userOrdersRef = ref(db, `Users/${user?.uid}/orders/${newOrderId}`);
             await set(userOrdersRef, true);
-    
+
             for (const item of productOrder) {
                 const productRef = ref(db, `Products/${item.id}/sold`);
                 const productQuantityRef = ref(db, `Products/${item.id}/quantity`);
-    
+
                 const currentSoldSnapshot = await get(productRef);
                 const currentQuantitySnapshot = await get(productQuantityRef);
-    
+
                 const currentSold = currentSoldSnapshot.val() || 0;
                 const currentQuantity = currentQuantitySnapshot.val() || 0;
-    
+
                 await Promise.all([
                     set(productQuantityRef, currentQuantity - item.quantity),
                     set(productRef, currentSold + item.quantity)
                 ]);
             }
-    
-            const userCartRef = ref(db, `Users/${user.uid}/cart`);
-            await set(userCartRef, null);
-    
-            return true;
+
+            if (user?.uid) {
+                const userCartRef = ref(db, `Users/${user.uid}/cart`);
+                await set(userCartRef, null);
+            } else {
+                console.error("User UID is undefined. Cannot clear cart.");
+            }
+            alert("Đặt hàng thành công")
+            window.location.href = "/"
         } catch (error) {
             console.error("Error processing order:", error);
-            return false;
         }
     },
-    
+
+
 
 
     deleteCartItem: (user, id, updateUi) => {
