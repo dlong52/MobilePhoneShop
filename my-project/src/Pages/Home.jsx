@@ -5,12 +5,13 @@ import { FlashSale } from '../Components/FlashSale'
 import { Outstanding } from '../Components/Outstanding'
 import Loading from '../Components/Loading/Loading'
 
-export const Home = ({ products }) => {
+export const Home = ({ products, brandsData }) => {
+  console.log(brandsData);
   return (
     <div className='container mx-auto py-5'>
       <Banner />
       <div className="mt-[45px]">
-        <Category />
+        <Category brandsData={brandsData} />
       </div>
       {!products.length == 0 ?
         <div className="">

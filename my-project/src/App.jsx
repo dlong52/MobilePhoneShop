@@ -18,6 +18,7 @@ import { ForgotPassword } from './Pages/ForgotPassword';
 
 function App() {
   const [productsData, setProductData] = useState([]);
+  const [brandsData, setBrandsData] = useState([]);
   const [user, setUser] = useState({});
   const [cartData, setCartData] = useState(null);
   const [currentUser, setCurrentUser] = useState(null)
@@ -42,7 +43,9 @@ function App() {
 
   const fetchData = async () => {
     const products = await database.fetchProductsData();
+    const brands = await database.fetchBrandData();
     setProductData(products);
+    setBrandsData(brands)
   };
 
   const handleAuth = () => {
@@ -80,11 +83,11 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home products={productsData} />}
+            element={<Home products={productsData} brandsData={brandsData} />}
           />
           <Route
             path="/Store"
-            element={<Store data={productsData} />}
+            element={<Store data={productsData} brandsData={brandsData}/>}
           />
           <Route
             path="/Checkout"

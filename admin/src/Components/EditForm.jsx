@@ -113,7 +113,7 @@ export const EditForm = ({ data, updateUi, show, brandsData, notify }) => {
                 <select name="brand" value={product.brand} onChange={handleInputChange} className="w-full mb-2 px-3 py-2 border rounded">
                     <option value="">Select Brand</option>
                     {brandsData.map((brand, index) => (
-                        <option key={index} value={brand.name}>{brand.name}</option>
+                        <option key={index} value={brand.id}>{brand.name}</option>
                     ))}
                 </select>
                 <input type="text" name="discount" value={product.discount} onChange={handleInputChange} placeholder="Discount" className="w-full mb-2 px-3 py-2 border rounded" />

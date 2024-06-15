@@ -10,6 +10,11 @@ export const routes = [
         icon: <i className="fa-lg fa-solid fa-layer-group"></i>
     },
     {
+        path: "/Category",
+        name: "Category",
+        icon: <i class="fa-solid fa-list fa-lg"></i>
+    },
+    {
         path: "/Orders",
         name: "Order",
         icon: <i className="fa-lg fa-regular fa-rectangle-list"></i>
@@ -19,4 +24,5 @@ export const routes = [
         name: "Users",
         icon: <i className="fa-lg fa-regular fa-user"></i>
     },
+    
 ];

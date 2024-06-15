@@ -2,10 +2,10 @@ import React from 'react'
 import categoryRoutes from '../../Routes/categoty'
 import { CategoryItem } from './CategoryItem'
 
-export const Category = () => {
+export const Category = ({brandsData}) => {
     return (
         <div className='flex -mx-2'>
-            {categoryRoutes.map(category => {
+            {brandsData?.map(category => {
                 return <CategoryItem data={category}/>
             })}
         </div>

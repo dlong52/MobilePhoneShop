@@ -1,4 +1,4 @@
-import { getDatabase, ref, child, get, set, push, remove, update } from "firebase/database";
+import { getDatabase, ref, child, get,query,orderByChild,equalTo , set, push, remove, update } from "firebase/database";
 import { app, auth } from "../../firebaseConfig";
 const dbRef = ref(getDatabase());
 const db = getDatabase(app);
@@ -50,8 +50,37 @@ const database = {
             alert('Error adding product to Products collection: ' + error.message);
         }
     },
+    createBrand: async (product, notify) => {
+        const productRef = ref(db, `Brand`);
+        try {
+            if (!product) {
+                throw new Error("Product data is missing.");
+            }
+            await push(productRef, product);
+            console.log('Product added to Products collection successfully');
+            notify("Brand added to Brands collection successfully", "success");
+
+        } catch (error) {
+            console.error('Error adding product to Products collection:', error);
+            alert('Error adding product to Products collection: ' + error.message);
+        }
+    },
     updateProduct: (id, productUpdate, notify) => {
         const productRef = ref(db, `Products`);
+        if (id) {
+            const newproduct = productUpdate
+            const productUpdateRef = child(productRef, id);
+            update(productUpdateRef, newproduct)
+                .then(() => {
+                    notify("Product updated successfully", "success");
+                })
+                .catch((error) => {
+                    console.error("Failed to update product:", error);
+                });
+        }
+    },
+    updateBrand: (id, productUpdate, notify) => {
+        const productRef = ref(db, `Brand`);
         if (id) {
             const newproduct = productUpdate
             const productUpdateRef = child(productRef, id);
@@ -77,6 +106,41 @@ const database = {
                 console.error("Error removing item: ", error);
             });
     },
+    deleteCategory: async (id, updateUi, notify, showConfirmDeleteCategory) => {
+        try {
+            // Step 1: Reference to the products
+            const productsRef = ref(db, 'Products');
+            
+            // Step 2: Query to find all products with the specified category ID
+            const productsQuery = query(productsRef, orderByChild('brand'), equalTo(id));
+    
+            // Step 3: Fetch products matching the query
+            const snapshot = await get(productsQuery);
+    
+            if (snapshot.exists()) {
+                // Step 4: Loop through each product and delete it
+                snapshot.forEach((childSnapshot) => {
+                    const productRef = child(productsRef, childSnapshot.key);
+                    remove(productRef).catch((error) => {
+                        console.error("Error removing product: ", error);
+                    });
+                });
+            }
+    
+            // Step 5: Now delete the category itself
+            const categoryRef = ref(db, `Brand/${id}`);
+            await remove(categoryRef);
+    
+            // Step 6: Update UI, show confirmation, and notify user
+            updateUi();
+            showConfirmDeleteCategory();
+            notify("Category and associated products deleted", "success");
+        } catch (error) {
+            console.error("Error removing category and products: ", error);
+            notify("Failed to delete category and associated products", "error");
+        }
+    },
+    
     fetchOrdersData: async () => {
         try {
             const snapshot = await get(child(dbRef, `Orders`));
@@ -193,7 +257,7 @@ const database = {
         try {
             const snapshot = await get(child(dbRef, `Brand`));
             if (snapshot.exists()) {
-                const dataArray = Object.keys(snapshot.val()).map((key) => ({ id: key, ...snapshot.val()[key] }));
+                const dataArray = Object.keys(snapshot.val()).map((key) => ({ b_id: key, ...snapshot.val()[key] }));
                 return dataArray;
             } else {
                 console.log("No data available");

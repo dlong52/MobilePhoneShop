@@ -7,7 +7,7 @@ const Loading = () => {
             <div class="">
                 <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-[100px] w-[100px]"></div>
             </div>
-        </div>
+        </div>   
     );
 };
 

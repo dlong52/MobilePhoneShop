@@ -3,7 +3,7 @@ import { ProductItem } from '../Components/ProductItem';
 import { Category } from '../Components/Category/Category';
 import Loading from '../Components/Loading/Loading';
 
-export const Store = ({ data }) => {
+export const Store = ({ data, brandsData }) => {
     const [dataSearches, setDataSearches] = useState(null);
     const [sortDirection, setSortDirection] = useState(null); // null for no sorting, 'asc' for ascending, 'desc' for descending
     const [selectedRam, setSelectedRam] = useState([]);
@@ -70,7 +70,7 @@ export const Store = ({ data }) => {
         } else if (category) {
             const lowercaseCategory = category.toLowerCase();
             filteredData = filteredData.filter(item =>
-                item.brand.toLowerCase().includes(lowercaseCategory)
+                item.brand == lowercaseCategory
             );
         }
 
@@ -97,7 +97,7 @@ export const Store = ({ data }) => {
         <div className='py-5'>
             <div className="container mx-auto">
                 <div className="mb-5">
-                    <Category />
+                    <Category brandsData={brandsData}/>
                 </div>
                 <div className="flex justify-between">
                     <div className="w-[200px] h-fit px-3 py-5 bg-white rounded-lg">
@@ -147,8 +147,8 @@ export const Store = ({ data }) => {
                     {dataSearches === null ? (
                         <Loading />
                     ) : dataSearches.length > 0 ? (
-                        <div className="grid grid-cols-4 gap-y-3 flex-1 ml-2 h-fit -mr-3">
-                            {dataSearches.map((item, index) => (
+                        <div className="grid grid-cols-4 2xl:grid-cols-5 gap-y-3 flex-1 ml-2 h-fit -mr-3">
+                            {dataSearches.slice().reverse().map((item, index) => (
                                 <ProductItem data={item} key={index} />
                             ))}
                         </div>

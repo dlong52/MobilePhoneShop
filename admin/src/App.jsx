@@ -12,6 +12,7 @@ import { UserDetail } from './Pages/UserDetail'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../firebaseConfig'
 import { SignIn } from './Pages/SignIn'
+import { Category } from './Pages/Category'
 
 function App() {
   const [productsData, setProductsData] = useState([])
@@ -76,6 +77,10 @@ function App() {
     const products = await database.fetchProductsData()
     setProductsData(products)
   }
+  const updateUiCategory = async () => {
+    const brands = await database.fetchBrandData()
+    setBrandsData(brands)
+  }
   const updateUiOrder = async () => {
     const orders = await database.fetchOrdersData()
     setOrdersData(orders)   
@@ -93,6 +98,10 @@ function App() {
             <Route
               path="/Products"
               element={user ? <Product data={productsData} brandsData={brandsData} updateUi={updateUi} /> : <Navigate to="/SignIn" />}
+            />
+            <Route
+              path="/Category"
+              element={user ? <Category data={brandsData} updateUi={updateUiCategory} /> : <Navigate to="/SignIn" />}
             />
             <Route
               path="/Orders"

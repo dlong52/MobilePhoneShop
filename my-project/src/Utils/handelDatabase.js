@@ -251,7 +251,21 @@ const database = {
             console.error("Error processing order:", error);
         }
     },
-
+    fetchBrandData: async () => {
+        try {
+            const snapshot = await get(child(dbRef, `Brand`));
+            if (snapshot.exists()) {
+                const dataArray = Object.keys(snapshot.val()).map((key) => ({ id: key, ...snapshot.val()[key] }));
+                return dataArray;
+            } else {
+                console.log("No data available");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            return null;
+        }
+    },
 
 
 

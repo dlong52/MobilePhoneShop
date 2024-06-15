@@ -23,7 +23,6 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
         images: [],
         colors: [],
         version: [
-            { v_name: '', price: '' },
             { v_name: '', price: '' }
         ],
         created_at: ''
@@ -46,6 +45,18 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
         const { name, value } = e.target;
         const newVersions = [...product.version];
         newVersions[index][name] = value;
+        setProduct({ ...product, version: newVersions });
+    };
+
+    const addVersion = () => {
+        setProduct((prevProduct) => ({
+            ...prevProduct,
+            version: [...prevProduct.version, { v_name: '', price: '' }]
+        }));
+    };
+
+    const removeVersion = (index) => {
+        const newVersions = product.version.filter((_, i) => i !== index);
         setProduct({ ...product, version: newVersions });
     };
 
@@ -90,7 +101,7 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
             alert('Price and quantity must be positive numbers.');
             return;
         }
-       
+
         if (product.images.length === 0) {
             alert('Please upload at least one image.');
             return;
@@ -99,7 +110,7 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
             ...product,
             created_at: helpers.getCurrentTime()
         };
-        await database.createProduct(newProduct,notify);
+        await database.createProduct(newProduct, notify);
         setProduct({
             name: '',
             price: '',
@@ -117,19 +128,19 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
             images: [],
             colors: [],
             version: [
-                { v_name: '', price: '' },
                 { v_name: '', price: '' }
             ],
             created_at: ''
         });
-        updateUi(); 
-        show(false); 
+        updateUi();
+        show(false);
     };
+
     return (
-        <form  className="p-5 bg-white rounded-md">
+        <form className="p-5 bg-white rounded-md">
             <div className="flex justify-between">
                 <h2 className="text-[20px] font-semibold">Add New Product</h2>
-                <button onClick={()=>{show()}}><i class="text-[#100e3d] fa-solid fa-circle-arrow-left fa-xl"></i></button>
+                <button onClick={() => { show(false) }}><i className="text-[#100e3d] fa-solid fa-circle-arrow-left fa-xl"></i></button>
             </div>
             <div className="mt-4">
                 <input type="text" name="name" value={product.name} onChange={handleInputChange} placeholder="Name" className="w-full mb-2 px-3 py-2 border rounded" />
@@ -140,7 +151,7 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
                 <select name="brand" value={product.brand} onChange={handleInputChange} className="w-full mb-2 px-3 py-2 border rounded">
                     <option value="">Select Brand</option>
                     {brandsData.map((brand, index) => (
-                        <option key={index} value={brand.name}>{brand.name}</option>
+                        <option key={index} value={brand.id}>{brand.name}</option>
                     ))}
                 </select>
                 <input type="text" name="discount" value={product.discount} onChange={handleInputChange} placeholder="Discount" className="w-full mb-2 px-3 py-2 border rounded" />
@@ -180,8 +191,12 @@ export const CreateForm = ({ updateUi, show, brandsData, notify }) => {
                         <div key={index} className="flex mb-2">
                             <input type="text" name="v_name" value={v.v_name} onChange={(e) => handleVersionChange(index, e)} placeholder="Version Name" className="w-1/2 px-3 py-2 border rounded mr-2" />
                             <input type="number" name="price" value={v.price} onChange={(e) => handleVersionChange(index, e)} placeholder="Version Price" className="w-1/2 px-3 py-2 border rounded" />
+                            {index > 0 && (
+                                <button type="button" onClick={() => removeVersion(index)} className="ml-2 bg-red-500 text-white px-3 py-1 rounded">Remove</button>
+                            )}
                         </div>
                     ))}
+                    <button type="button" onClick={addVersion} className="mt-2 bg-green-500 text-white px-3 py-1 rounded">Add Version</button>
                 </div>
                 <button type="button" onClick={handleSubmit} className="mt-4 bg-blue-600 text-white px-4 py-2 rounded">Add Product</button>
             </div>
